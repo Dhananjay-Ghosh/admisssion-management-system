@@ -1,0 +1,24 @@
+.admission{
+    line-height: 2;
+}
+
+.admission input{
+    padding: 4px;
+    /* border-radius: 6px; */
+}
+
+.br{
+    display: none;
+}
+.container{
+    margin: 20px;
+}
+
+@media only screen and (max-width: 440px) {
+    .content {
+        display: none;
+    }
+    .br{
+        display: static;
+    }
+}
