@@ -11,14 +11,31 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // echo "Successfully connected Database<br>";
         $username = $_POST["aid"];
         $password = $_POST["psw"];
-        $sql = "Select * from ams where appid = '$username' AND password = '$password'";
+        // $sql = "Select * from ams where appid = '$username' AND password = '$password'";
+        $sql = "Select * from ams where appid = '$username'";
         $result = mysqli_query($conn, $sql);
         $num = mysqli_num_rows($result);
         if($num == 1){
-            include 'student_dashboard.html';
+            while ($row= mysqli_fetch_assoc($result)) {
+                if(password_verify($password,$row['password'])){
+                    // session_start();
+                    // $_SESSION['loggedin'] = true;
+                    // $_SESSION['username'] = $username;
+                    echo "Successfully loggedin";
+                    header("location: student_dashboard.html");
+                    // include 'student_dashboard.html';
+                }
+                else{
+                    echo "Invalid Credentials";
+                    // header("location: index7.html");
+                    include 'index7.html';
+                }
+            }
         }
         else{
-            echo "Invalid Credentials";
+            echo "Invalid username or password !";
+            // header("location: index7.html");
+            include 'index7.html';
         }
     }
     else{

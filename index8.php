@@ -1,5 +1,11 @@
 <?php
 
+// session_start();
+// if(isset($_SESSION['username'])){
+//     header("location: admin_dashboard.html");
+//     exit;
+// }
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // include 'dbconnect.php';
     $username = "root";
@@ -15,7 +21,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $result = mysqli_query($conn, $sql);
         $num = mysqli_num_rows($result);
         if($num == 1){
-            include 'admin_dashboard.html';
+            session_start();
+            $_SESSION["username"] = $username;
+            $_SESSION["loggedin"] = true;
+            include 'admin_dashboard.php';
         }
         else{
             echo "Invalid Credentials";
