@@ -1,2 +1,2 @@
 # admisssion-management-system
-Tech-Stack : HTML, CSS, JavaScript, PHP and SQL
+Tech-Stack : HTML, CSS, PHP and SQL
